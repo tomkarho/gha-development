@@ -15,15 +15,11 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-  Run-Docker-Actions:
-    runs-on: [self-hosted, tomkarho]
-    - name: Checkout
-        uses: actions/checkout@v2
-    - name: Docker
-        uses: ./docker-action.yml
-        id: hello
-        with:
-          who-to-greet: 'Mona the Octocat'
-    # Use the output from the `hello` step
-    - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
+      - name: Docker
+          uses: ./docker-action.yml
+          id: hello
+          with:
+            who-to-greet: 'Mona the Octocat'
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
